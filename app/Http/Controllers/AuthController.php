@@ -34,8 +34,8 @@ class AuthController extends Controller
         );
 
         // Send Email Welcome
-        Mail::to($user->email)
-            ->send(new WelcomeEmail($user));
+        // Mail::to($user->email)
+        //     ->send(new WelcomeEmail($user));
 
         // Redirect
         return redirect()->route("dashboard")->with("success", "Account Created Successfully");
@@ -59,12 +59,10 @@ class AuthController extends Controller
             request()->session()->regenerate();
 
             return redirect()->route("dashboard")->with("success", "Logged in Successfully");
-
         } else {
             return redirect()->route("login")->withErrors([
                 "email" => "No matching user found with the provided email and password",
             ]);
-
         }
     }
 
@@ -76,5 +74,4 @@ class AuthController extends Controller
 
         return redirect()->route("dashboard")->with("success", "Logged out Successfully");
     }
-
 }
